@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-rgb: 254, 255, 234;
+  --background-rgb: 66, 66, 66;
+  --textarea-rgb: 163, 163, 163;
+  --openai-chat-rgb: 201, 201, 201;
+  --me-chat-rgb: 252, 252, 98;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: rgb(var(--color-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
