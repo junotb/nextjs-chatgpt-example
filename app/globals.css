@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --color-rgb: 243, 243, 243;
-  --background-rgb: 19, 19, 19;
-  --textarea-rgb: 163, 163, 163;
-  --openai-chat-rgb: 201, 201, 201;
-  --me-chat-rgb: 252, 252, 98;
+  --color-rgb: 245, 245, 245;
+  --background-rgb: 23, 23, 23;
 }
 
 body {
