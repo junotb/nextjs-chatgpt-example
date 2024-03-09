@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, orderBy, query } from "firebase/firestore";
+import { Chat } from "./types/Chat";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDOlf4kg2Yq5mplM_XPVD8uiz-XqS1cQUg",
@@ -17,8 +18,9 @@ export const database = getFirestore(app);
 
 export const addChat = async (chat: Chat): Promise<string> => {
   const docRef = await addDoc(collection(database, 'CHATS'), {
-    NAME: chat.NAME,
-    CONTENT: chat.CONTENT
+    NAME: chat.name,
+    CONTENT: chat.content,
+    REGISTER_TIMESTAMP: chat.register_timestamp
   });
   return docRef.id;
 }
@@ -28,14 +30,16 @@ export const deleteChat = async (id: string): Promise<void> => {
 }
 
 export const getChats = async (): Promise<Chat[]> => {
-  const querySnapshot = await getDocs(collection(database, 'CHATS'));
+  const q = query(collection(database, 'CHATS'), orderBy('REGISTER_TIMESTAMP', 'asc'));
+  const querySnapshot = await getDocs(q);
 
   let arrayChats: Chat[] = [];
   querySnapshot.forEach((element) => {
     const data = element.data();
     const chat: Chat = {
-      NAME: data.NAME,
-      CONTENT: data.CONTENT
+      name: data.NAME,
+      content: data.CONTENT,
+      register_timestamp: data.REGISTER_TIMESTAMP
     }
     arrayChats.push(chat);
   });

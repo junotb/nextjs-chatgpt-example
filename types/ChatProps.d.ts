@@ -1,0 +1,3 @@
+interface ChatProps {
+  chat: Chat
+}
