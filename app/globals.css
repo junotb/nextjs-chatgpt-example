@@ -16,6 +16,30 @@ html, body {
   background: rgb(var(--background-rgb));
 }
 
+.scrollbar-none::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 0.125rem solid #888;
+  border-radius: 0.125rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} 
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

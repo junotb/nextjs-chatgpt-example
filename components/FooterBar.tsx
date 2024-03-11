@@ -37,13 +37,17 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
 
     setIsProcessing(true);
 
+    // Get value from textarea //
     const message = textareaRef.current!.value;
-    console.log(message);
+
+    // Make it empty immediately //
     textareaRef.current!.value = '';
     setIsWriting(false);
 
+    // Write my chat on Firebase //
     handleAddChat('Juno', message);
     
+    // Send a request to Chatgpt //
     const content = await fetch('/api/openai', {
       method: 'POST',
       body: JSON.stringify({
@@ -53,6 +57,8 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
       .then(response => response.json())
       .then(data => data.content)
       .catch((reason) => console.log(reason));
+
+    // Write Chatgpt chat on Firebase //
     if (content) handleAddChat('GPT-3.5-Turbo', content);
     
     setIsProcessing(false);
@@ -65,7 +71,7 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
           ref={textareaRef}
           onKeyDown={(event) => handleKeyDown(event)}
           onKeyUp={(event) => handleKeyUp(event)}
-          className="border-none w-full h-full bg-transparent text-xs outline-none resize-none overflow-y-scroll"
+          className="border-none w-full h-full bg-transparent text-xs outline-none resize-none overflow-y-scroll scrollbar-none"
         ></textarea>
       </div>
       <div className="flex justify-between p-1">
