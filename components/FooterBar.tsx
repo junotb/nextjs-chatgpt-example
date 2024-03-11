@@ -3,14 +3,21 @@
 import { addChat } from "@/firebaseConfig";
 import { Chat } from "@/types/Chat";
 import { Timestamp } from "firebase/firestore";
-import { useRef, useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 
 export default function FooterBar ({ onChangeChat }: FooterProps) {
   const [isWriting, setIsWriting] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   
-  const handleKeyUp = () => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!event.nativeEvent.isComposing && event.key === 'Enter') {
+      event.preventDefault();
+      handleClick();
+    }
+  }
+  
+  const handleKeyUp = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     const value = textareaRef.current!.value;
     setIsWriting((value) ? true : false);
   }
@@ -31,6 +38,7 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
     setIsProcessing(true);
 
     const message = textareaRef.current!.value;
+    console.log(message);
     textareaRef.current!.value = '';
     setIsWriting(false);
 
@@ -55,13 +63,15 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
       <div className="w-full h-full px-4 py-2">
         <textarea
           ref={textareaRef}
-          onKeyUp={handleKeyUp}
+          onKeyDown={(event) => handleKeyDown(event)}
+          onKeyUp={(event) => handleKeyUp(event)}
           className="border-none w-full h-full bg-transparent text-xs outline-none resize-none overflow-y-scroll"
         ></textarea>
       </div>
       <div className="flex justify-between p-1">
         <div></div>
         <button
+          type="button"
           onClick={handleClick}
           className={`px-4 py-1 text-xs rounded-md ${(isWriting) ? 'bg-yellow-300 text-neutral-900' : 'bg-neutral-700 text-neutral-400'}`}
         >전송</button>

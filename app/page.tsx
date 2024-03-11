@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [chats, setChats] = useState<Chat[]>();
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const ME = 'Juno'; // Proove who's me
 
   const handleChangeChat = async () => {
@@ -17,15 +18,19 @@ export default function Home() {
     setChats(chats);
   }
 
+  const handleToggleFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
+  }
+
   useEffect(() => {
     handleChangeChat();
   }, []);
   
   return (
-    <div className="flex flex-col justify-center items-center h-full">
-      <div className="flex flex-col w-full max-w-96 max-h-[32rem] h-full rounded-md">
-        <HeaderBar />
-        <main className="flex flex-col border-x border-neutral-400 p-1 overflow-y-scroll">
+    <div className="flex flex-col items-center h-full">
+      <div className={`flex flex-col justify-center w-full ${(isFullScreen) ? 'max-w-full' : 'max-w-96'} smooth-width h-full rounded-md`}>
+        <HeaderBar onToggleFullScreen={handleToggleFullScreen} />
+        <main className={`flex flex-col border-x border-neutral-400 p-1 smooth-height h-full ${(isFullScreen) ? 'max-h-full' : 'max-h-[36rem]'} smooth-height overflow-y-scroll`}>
           {
             (chats)
             ? chats.map((chat, index) =>

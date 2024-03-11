@@ -1,0 +1,3 @@
+interface HeaderProps {
+  onToggleFullScreen: () => void
+}

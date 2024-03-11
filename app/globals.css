@@ -21,3 +21,19 @@ html, body {
     text-wrap: balance;
   }
 }
+
+.smooth-width {
+  -webkit-transition: max-width 1s; 
+  -moz-transition: max-width 1s; 
+  -ms-transition: max-width 1s; 
+  -o-transition: max-width 1s; 
+  transition: max-width 1s;  
+}
+
+.smooth-height {
+  -webkit-transition: max-height 1s; 
+  -moz-transition: max-height 1s; 
+  -ms-transition: max-height 1s; 
+  -o-transition: max-height 1s; 
+  transition: max-height 1s;  
+}

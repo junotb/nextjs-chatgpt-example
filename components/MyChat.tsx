@@ -11,7 +11,7 @@ export default function MyChat ({ chat }: ChatProps) {
   return (
     <div className="flex flex-row-reverse items-end">
       <div className="flex p-1 text-right">
-        <div className="px-2 py-1 bg-yellow-300 rounded-md">
+        <div className="px-2 py-1 max-w-48 bg-yellow-300 rounded-md">
           <p className="text-xs text-neutral-900">{content}</p>
         </div>
       </div>
