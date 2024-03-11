@@ -65,7 +65,7 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
   }
 
   return (
-    <footer className="flex flex-col border-b border-x border-neutral-400 h-28 bg-neutral-800 rounded-b-lg">
+    <div className="flex flex-col border-b border-x border-neutral-400 h-28 bg-neutral-800 rounded-b-lg">
       <div className="w-full h-full px-4 py-2">
         <textarea
           ref={textareaRef}
@@ -82,6 +82,6 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
           className={`px-4 py-1 text-xs rounded-md ${(isWriting) ? 'bg-yellow-300 text-neutral-900' : 'bg-neutral-700 text-neutral-400'}`}
         >전송</button>
       </div>
-    </footer>
+    </div>
   );
 }

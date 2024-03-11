@@ -30,7 +30,7 @@ export default function Home() {
     <div className="flex flex-col items-center h-full">
       <div className={`flex flex-col justify-center w-full ${(isFullScreen) ? 'max-w-full' : 'max-w-96'} smooth-width h-full rounded-md`}>
         <HeaderBar onToggleFullScreen={handleToggleFullScreen} />
-        <main className={`flex flex-col border-x border-neutral-400 p-1 smooth-height h-full ${(isFullScreen) ? 'max-h-full' : 'max-h-[36rem]'} smooth-height overflow-y-scroll`}>
+        <main className={`flex flex-col border-x border-neutral-400 p-1 smooth-height h-full ${(isFullScreen) ? 'max-h-full' : 'max-h-[32rem]'} smooth-height overflow-y-scroll`}>
           {
             (chats)
             ? chats.map((chat, index) =>
