@@ -65,7 +65,7 @@ export default function FooterBar ({ onChangeChat }: FooterProps) {
   }
 
   return (
-    <div className="flex flex-col border-b border-x border-neutral-400 h-28 bg-neutral-800 rounded-b-lg">
+    <div className="flex flex-col h-28 bg-neutral-800 rounded-b-lg">
       <div className="w-full h-full px-4 py-2">
         <textarea
           ref={textareaRef}
